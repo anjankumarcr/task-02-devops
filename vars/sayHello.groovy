@@ -1,3 +1,3 @@
-def call() {
-    echo "Hello from Shared Library!"
+def call(String name) {
+    echo "Hello from Shared Library, ${name}!"
 }
