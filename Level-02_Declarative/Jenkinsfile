@@ -1,49 +1,14 @@
 pipeline {
-    agent any
-
-    environment {
-        IMAGE = "level2-image"
-    }
-
-    stages {
-
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/anjankumarcr36/task-02-devops.git'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'echo "Building project..."'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'echo "Running tests..."'
-            }
-        }
-
-        stage('Docker Build') {
-            steps {
-                sh 'docker build -t ${IMAGE}:v1 .'
-            }
-        }
-
-        stage('Push (Dummy Step)') {
-            steps {
-                sh 'echo "Push step placeholder for Level-02"'
-            }
-        }
-    }
-
-    post {
-        success {
-            echo "Level-02 Pipeline completed successfully!"
-        }
-        failure {
-            echo "Pipeline failed!"
-        }
-    }
+  agent any
+  environment { IMAGE = "level2-image" }
+  stages {
+    stage('Checkout') { steps { git 'https://github.com/Become-DevOps/proj.git' } }
+    stage('Build')    { steps { sh 'echo "Building project..."' } }
+    stage('Test')     { steps { sh 'echo "Running tests..."' } }
+    stage('Docker Build') { steps { sh 'docker build -t ${IMAGE}:v1 .' } }
+  }
+  post {
+    success { echo "Level-02 Pipeline completed successfully!" }
+    failure { echo "Pipeline failed!" }
+  }
 }
