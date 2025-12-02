@@ -1,12 +1,32 @@
 @Library('my-shared-lib') _
+
 pipeline {
     agent any
 
     stages {
-        stage('Call Shared Library') {
+
+        stage('Say Hello') {
             steps {
-                sayHello()
+                sayHello("Anjan Kumar")
             }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'echo "Level-03 Build Stage"'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'echo "Level-03 Test Stage"'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Level-03 Pipeline Completed Successfully!"
         }
     }
 }
